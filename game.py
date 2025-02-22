@@ -1,4 +1,5 @@
 # Hunt the Wumpus: Portia's Code :3
+# WARNING: THIS CODE ISN'T FULLY WORKING 
 
 import random
 
