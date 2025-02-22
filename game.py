@@ -62,8 +62,13 @@ else:
     board[userY][userX] = "p"
 
 for holeCoordinate in holeLocations:
+    # print(userX, userY)
     # print(holeCoordinate)
-    if userX == holeCoordinate[0] and userY == holeCoordinate[1]:
+    if userX == -1:
+        userX = 4
+    if userY == -1:
+        userY = 4    
+    if userX == holeCoordinate[1] and userY == holeCoordinate[0]:
         gameOver = True
 
 if gameOver:
