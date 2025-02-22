@@ -21,7 +21,7 @@ board = [["p", "_", "_", "_", "o"],
          ["_", "_", "_", "_", "_"],
          ["o", "_", "_", "_", "_"]]
 
-holeLocations = []
+holeLocations = [[0,4], [1,1], [2,3], [4,0]]
 
 # Inital Player Position
 userX = 0
@@ -43,13 +43,23 @@ if move == "w":
     board[userY][userX] = "p"
 # down
 elif move == "s":
+    board[userY][userX] = "_"
     userY += 1
+    board[userY][userX] = "p"
 # left
 elif move == "a":
+    board[userY][userX] = "_"
     userX -= 1
+    board[userY][userX] = "p"
 # right
 else:
+    board[userY][userX] = "p"
     userX += 1
+    board[userY][userX] = "p"
+
+
+for row in board:
+    print(row)
  
 
 # Let's update the Wumpus's position
