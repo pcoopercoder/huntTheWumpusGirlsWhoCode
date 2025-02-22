@@ -27,10 +27,14 @@ holeLocations = [[0,4], [1,1], [2,3], [4,0]]
 userX = 0
 userY = 0
 
+gameOver = False
+
 print("🦇 Welcome to Hunt the Wumpus!🦇")
 print("You are in a cave with a wumpus 👹.")
 print("Your goal is to find the wumpus and avoid falling into a bottomless pit 🕳️.")
-   
+
+for row in board:
+    print(row)  
    
 # Get a move from the player    
 move = input("Enter a move (w=up, a=left, d=right, and s=down): ")
@@ -53,9 +57,17 @@ elif move == "a":
     board[userY][userX] = "p"
 # right
 else:
-    board[userY][userX] = "p"
+    board[userY][userX] = "_"
     userX += 1
     board[userY][userX] = "p"
+
+for holeCoordinate in holeLocations:
+    # print(holeCoordinate)
+    if userX == holeCoordinate[0] and userY == holeCoordinate[1]:
+        gameOver = True
+
+if gameOver:
+    print("You Lose!!!")
 
 
 for row in board:
