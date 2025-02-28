@@ -1,15 +1,10 @@
 # Hunt the Wumpus: Portia's Code :3
-# WARNING: THIS CODE ISN'T FULLY WORKING 
 
 import random
 
 '''
 TO DO:
-    Finish board update
-    Finish user movement
     Notify player of hazards above, below, to the left or right of them
-    Add wumpus movement
-    Give Player the ability to shoot arrows
     Create a gameplay loop
     Once we update the board, we need to let the user know if they are near any harzards
 '''
