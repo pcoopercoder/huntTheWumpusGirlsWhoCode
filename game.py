@@ -1,4 +1,5 @@
 # Hunt the Wumpus: Portia's Code :3
+# WARNING: THIS CODE ISN'T FULLY WORKING 
 
 import random
 
@@ -10,6 +11,7 @@ TO DO:
     Add wumpus movement
     Give Player the ability to shoot arrows
     Create a gameplay loop
+    Once we update the board, we need to let the user know if they are near any harzards
 '''
 
 # Cave Board
@@ -39,6 +41,7 @@ print("🦇 Welcome to Hunt the Wumpus!🦇")
 print("You are in a cave with a wumpus 👹.")
 print("Your goal is to find the wumpus and avoid falling into a bottomless pit 🕳️.")
 
+# BEGIN WHILE
 while gameOver != True:
     print()
     for row in board:
@@ -47,135 +50,108 @@ while gameOver != True:
     # Get a move from the player    
     move = input("Enter a move (w=up, a=left, d=right, and s=down): ")
 
-
     # up
     if move == "w":
         board[userY][userX] = "_"
         userY -= 1
-        board[userY][userX] = "p"
     # down
     elif move == "s":
         board[userY][userX] = "_"
         userY += 1
-        board[userY][userX] = "p"
     # left
     elif move == "a":
         board[userY][userX] = "_"
         userX -= 1
-        board[userY][userX] = "p"
     # right
     else:
         board[userY][userX] = "_"
         userX += 1
-        board[userY][userX] = "p"
+
+    userX %= 5
+    userY %= 5
+         
+    board[userY][userX] = "p"
 
     for holeCoordinate in holeLocations:
-        if userX == -1:
-            userX = 4
-        if userY == -1:
-            userY = 4    
         if userX == holeCoordinate[1] and userY == holeCoordinate[0]:
             gameOver = True
 
     if gameOver:
         print("You Lose!!!")
 
-
-    for row in board:
-        print(row)
-    
-
     # Let's update the Wumpus's position
-    randomDir = random.choices(["up", "down", "left", "right"])
+    randomDir = random.choice(["up", "down", "left", "right"])
 
+    # BEGIN IF
     # up
     if randomDir == "up":
         temp = wumpusY - 1
+        temp %= 5
         dontMove = False
 
         for holeCoordinate in holeLocations:
-            if wumpusX == -1:
-                wumpusX = 4
-            if wumpusY == -1:
-                wumpusY = 4    
-            if wumpusX == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+            if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
                 dontMove = True
 
-        if wumpusY == userX and wumpusX == userY:
+        if wumpusX == userX and temp == userY:
             dontMove = True
 
         if not dontMove:
             board[wumpusY][wumpusX] = "_"
-            wumpusY -= 1
+            wumpusY = temp
             board[wumpusY][wumpusX] = "w"
     # down
     elif randomDir == "down":
         temp = wumpusY + 1
+        temp %= 5  
         dontMove = False
 
         for holeCoordinate in holeLocations:
-            if wumpusX == -1:
-                wumpusX = 4
-            if wumpusY == -1:
-                wumpusY = 4    
-            if wumpusX == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+            if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
                 dontMove = True
 
-        if wumpusY == userX and wumpusX == userY:
+        if wumpusX == userX and temp == userY:
             dontMove = True
 
         if not dontMove:
             board[wumpusY][wumpusX] = "_"
-            wumpusY += 1
+            wumpusY = temp
             board[wumpusY][wumpusX] = "w"
     # left
     elif randomDir == "left":
         temp = wumpusX - 1
+        temp %= 5
         dontMove = False
 
-        for holeCoordinate in holeLocations:
-            if wumpusX == -1:
-                wumpusX = 4
-            if wumpusY == -1:
-                wumpusY = 4    
-            if wumpusX == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+        for holeCoordinate in holeLocations:  
+            if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
                 dontMove = True
 
-        if wumpusY == userX and wumpusX == userY:
+        if wumpusY == userY and temp == userX:
             dontMove = True
 
         if not dontMove:
             board[wumpusY][wumpusX] = "_"
-            wumpusX -= 1
+            wumpusX = temp
             board[wumpusY][wumpusX] = "w"
     # right
     else:
         temp = wumpusX + 1
+        temp %= 5
         dontMove = False
 
         for holeCoordinate in holeLocations:
-            if wumpusX == -1:
-                wumpusX = 4
-            if wumpusY == -1:
-                wumpusY = 4    
-            if wumpusX == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+            if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
                 dontMove = True
 
-        if wumpusY == userX and wumpusX == userY:
+        if wumpusY == userY and temp == userX:
             dontMove = True
 
         if not dontMove:
             board[wumpusY][wumpusX] = "_"
-            wumpusX += 1
+            wumpusX = temp
             board[wumpusY][wumpusX] = "w"
-
-    print()
-    for row in board:
-        print(row)
-
-# Once we update the board, we need to let the user know 
-# if they are near any harzards
-
-
+    # END IF
+#END WHILE
 
 
