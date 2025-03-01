@@ -9,9 +9,9 @@ TO DO:
     Once we update the board, we need to let the user know if they are near any harzards
 '''
 
-def nearHole(holeLocations,userX,userY):
+def inHole(holeLocations, x, y):
     for holeCoordinate in holeLocations:
-        if userX == holeCoordinate[1] and userY == holeCoordinate[0]:
+        if x == holeCoordinate[1] and y == holeCoordinate[0]:
             return True
 
 # Cave Board
@@ -72,7 +72,7 @@ while gameOver != True:
          
     board[userY][userX] = "p"
 
-
+    gameOver = inHole(holeLocations, userX, userY)
 
     if gameOver:
         print("You Lose!!!")
@@ -88,9 +88,10 @@ while gameOver != True:
         dontMove = False
 
         # update
-        for holeCoordinate in holeLocations:
-            if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
-                dontMove = True
+        dontMove = inHole(holeLocations, wumpusX, temp)
+        # for holeCoordinate in holeLocations:
+        #     if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
+        #         dontMove = True
 
         if wumpusX == userX and temp == userY:
             dontMove = True
@@ -106,9 +107,11 @@ while gameOver != True:
         dontMove = False
 
         # update
-        for holeCoordinate in holeLocations:
-            if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
-                dontMove = True
+        dontMove = inHole(holeLocations, wumpusX, temp)
+
+        # for holeCoordinate in holeLocations:
+        #     if wumpusX == holeCoordinate[1] and temp == holeCoordinate[0]:
+        #         dontMove = True
 
         if wumpusX == userX and temp == userY:
             dontMove = True
