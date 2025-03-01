@@ -72,10 +72,15 @@ while gameOver != True:
          
     board[userY][userX] = "p"
 
-    gameOver = inHole(holeLocations, userX, userY)
-
-    if gameOver:
+    if(inHole(holeLocations, userX, userY)):
         print("You Lose!!!")
+        gameOver = True
+
+    # user has found wumpus
+    if userX == wumpusX and userY == wumpusY:
+        print("You win!!")
+        gameOver = True
+
 
     # Let's update the Wumpus's position
     randomDir = random.choice(["up", "down", "left", "right"])
