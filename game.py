@@ -127,9 +127,10 @@ while gameOver != True:
         dontMove = False
 
         # update
-        for holeCoordinate in holeLocations:  
-            if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
-                dontMove = True
+        dontMove = inHole(holeLocations, temp, wumpusY)
+        # for holeCoordinate in holeLocations:  
+        #     if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+        #         dontMove = True
 
         if wumpusY == userY and temp == userX:
             dontMove = True
@@ -145,9 +146,10 @@ while gameOver != True:
         dontMove = False
 
         # update
-        for holeCoordinate in holeLocations:
-            if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
-                dontMove = True
+        dontMove = inHole(holeLocations, temp, wumpusY)
+        # for holeCoordinate in holeLocations:
+        #     if temp == holeCoordinate[1] and wumpusY == holeCoordinate[0]:
+        #         dontMove = True
 
         if wumpusY == userY and temp == userX:
             dontMove = True
